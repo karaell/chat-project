@@ -1,0 +1,82 @@
+//font-family: 'Roboto', sans-serif;
+
+.popup {
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 100%;
+    width: 100%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    &:target{
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.popup__body {
+    background-color: #fff;
+    width: 273px;
+    height: 319px;
+}
+
+.popup__content {
+    padding: 0 14px;
+}
+
+.popup__top {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0 0 0;
+}
+
+.popup__close {
+    cursor: pointer;
+    img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.popup__body-subtitle {
+    &.settings-subtitle {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+.popup__form{
+    width: 207px;
+    height: 32px;
+    input {
+        font-size: 16px;
+        width: 180px;
+    }
+    &.form-autorize {
+        margin: 3px 0 7px 0;
+    }
+}
+.popup__btn {
+    display: inline-block;
+    button {
+    font-size: 16px;
+    background-color: #fff;
+    }
+}
+
+//SETTINGS BODY
+
+.settings-title {
+    padding: 16px 0 8px 0;
+}
+
+// AUTORIZE
+
+.autorize-body {
+    margin: 70px 0 0 0;
+}
+
+.authorization__btn-send {
+    display: inline-block;
+}

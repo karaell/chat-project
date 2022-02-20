@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en,ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app__wrapper">
+    <div id="chat" class="chat__wrapper">
+
+        <div class="chat__top">
+            <div class="container">
+                <div class="top__row">
+                    <div class="top__item item">
+                        <a href="#popup-settings">Настройка</a>
+                    </div>
+                    <div class="top__item item">
+                        <a href="#popup-autorize">Выйти</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat__body">
+            <div class="container">
+                <div class="body__row">
+                    <template id="template">
+                        <div class="message message-from-me sent">
+                            <div class="text"></div>
+                            <div class="time"></div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat__bottom">
+            <div class="container"> 
+                <form action="#" class="form-message" method="post" onsubmit="return false">
+                    <div class="bottom__row">
+                        <div class="bottom__input item">
+                            <input type="text" class="input-message" placeholder="сообщение..">
+                        </div>
+
+                        <div class="bottom__btn item">
+                            <button class="btn-message">-></button>
+                        </div>
+                    </div>
+                </form>  
+            </div>
+        </div>
+    </div>
+
+<!-- SETTINGS -->
+        <div id="popup-settings" class="popup popup__settings">
+            <div class="popup__body">
+                <div class="popup__content">
+                    <div class="popup__top">
+                        <div class="popup__title">Настройки</div>
+        
+                        <div class="popup__close">
+                            <a href="#chat">
+                                <img src="/img/close.svg" alt="" class="close-icon">
+                            </a>
+                        </div>
+                    </div>
+        
+                    <div class="popup__main">
+                        <div class="popup__title settings-title">Имя в чате</div>
+        
+                        <div class="popup__body-subtitle settings-subtitle">
+                            <div class="popup__form item">
+                                <form action="#">
+                                    <input class="popup__input settings-input" type="text" placeholder="Name..">
+                                </form>
+                            </div>
+                            <div class="popup__btn settings-btn item">
+                                <a href="#chat"><button>-></button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- AUTORIZE -->
+        <div id="popup-autorize" class="popup popup__autorize">
+            <div class="popup__body">
+                <div class="popup__content">
+                    <div class="popup__top">
+                        <div class="popup__title">Авторизация</div>
+        
+                        <div class="popup__close">
+                            <a href="#chat">
+                                <img src="/img/close.svg" alt="" class="close-icon">
+                            </a>
+                        </div>
+                    </div>
+        
+                    <div class="popup__body-subtitle autorize-body">
+                        <div class="popup__title">Почта:</div>
+                        
+
+                        <div class="popup__form form-autorize item">
+                            <form id="authorization" action="#" class="autorize-form">
+                                <input name="email" type="email" class="input-email">
+                            </form>
+                        </div>
+                        
+                        <div class="popup__btn authorize-btn item">
+                            <a href="#popup-confirm">
+                                <button>
+                                    Получить код
+                                </button>
+                            </a>                                                      
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- CONFIRM -->
+        <div id="popup-confirm" class="popup popup__confirm">
+            <div class="popup__body">
+                <div class="popup__content">
+                    <div class="popup__top">
+                        <div class="popup__title">Подтверждение</div>
+        
+                        <div class="popup__close">
+                            <a href="#popup-autorize">
+                                <img src="/img/close.svg" alt="" class="close-icon">
+                            </a>
+                        </div>
+                    </div>
+        
+                    <div class="popup__body-subtitle autorize-body">
+                        <div class="popup__title">Код:</div>
+        
+        
+                        <div class="popup__form form-autorize item">
+                            <form id="confirm" action="#" class="confirm-form">
+                                <input type="text" class="confirm-input">
+                            </form>
+                        </div>
+        
+                        <div class="popup__btn item">
+                            <a href="#chat">
+                                <button class="confirm-btn">
+                                    Войти
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+
+    <script src="/js/main.js" type="module"></script>
+    <script src="/js/authorization.js" type="module"></script>
+</body>
+</html>

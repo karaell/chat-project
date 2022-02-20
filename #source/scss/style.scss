@@ -1,0 +1,144 @@
+@import "nullstyle.scss";
+@import "settings.scss";
+
+//font-family: 'Roboto', sans-serif;
+
+//Переменные для чата
+// $app-bgc:#535353;
+$chat-bgc:#fff;
+$border:1px solid #000;
+
+//Color for messages
+$sent-bgc:#F6F6F6;
+$deliver-bgc:#E5E5E5;
+
+body {
+    background: #E5E5E5;
+}
+
+.app__wrapper {
+    background-color: $chat-bgc;
+    height: 533px;
+    width: 320px;
+    margin: 100px auto 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000;
+
+    display: flex;
+    flex-direction: column;
+    
+    position: relative;
+}
+
+.container {
+    width: 304px;
+    margin: 0 auto;
+}
+
+.chat__wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat__top {
+    padding: 9px 0 7px 0;
+}
+.top__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+// BODY
+
+.chat__body {
+    flex: 1 1 auto;
+    border: $border;
+    margin: 0 8px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.body__row {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-height: 424px;
+    overflow: auto;
+    &::-webkit-scrollbar {
+	width: 0px;
+    }
+}
+.message {
+    padding: 8px;
+    display: inline-block;
+    margin: 0 0 8px 0;
+    &:last-child {
+        margin: 0;
+    }
+}
+
+.message-from-me {
+    align-self: flex-end;
+}
+
+.message-to-me {
+    background-color: $deliver-bgc;
+}
+
+.delivered {
+    background-color: $deliver-bgc;
+}
+.sent {
+    background-color: $sent-bgc;
+}
+
+.text {
+    margin-bottom: 4px;
+    line-height: 18.75px;
+}
+.time {
+    display: flex;
+    justify-content: flex-end;
+    font-weight: 300;
+    font-size: 14px;
+    font-style: italic;
+}
+
+// BOTTOM
+
+.chat__bottom {
+    padding: 8px 0;
+}
+
+.bottom__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.bottom__input {
+    width: 267px;   
+}
+
+.input-message {
+    font-size: 16px;
+    width: 230px;
+}
+.btn-message {
+    background-color: #fff;
+    font-size: 16px;
+}
+.item {
+    border: $border;
+    padding: 6px 8px;
+    line-height: 18.75px;
+    cursor: pointer;
+    a {
+    color: #000;
+    }
+}
