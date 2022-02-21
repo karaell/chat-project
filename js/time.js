@@ -1,7 +1,14 @@
-export function renderTime() {
-    let date = new Date();
-    let hour = date.getHours();
-    let min = date.getMinutes();
+export function renderTime(data) {
+    let date;
+    
+    if (!data) {
+        date = new Date();
+    } else {
+        date = new Date(data);
+    }
 
-    return hour + ':' + min;
+    const hour = date.getHours();
+    const min = '0' + date.getMinutes();
+
+    return hour + ':' + min.slice(-2);
 }

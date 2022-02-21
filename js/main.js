@@ -1,18 +1,20 @@
 import { UI } from "./view.js";
-import { renderTime } from "./time.js"
+import { renderMessageBlock } from "./render.js";
 
 UI.MESSAGE.BTN.addEventListener('click', sendMessage);
 
 function sendMessage() {
-    const textMessage = UI.MESSAGE.INPUT.value;
-    const userName = 'Я';
+    const DATA = {
+        NAME: 'Я',
+        TEXT_MESSAGE: UI.MESSAGE.INPUT.value,
+        CLASS: 'message message-from-me sent',
+    }
 
-    if (!textMessage) {
+    if (!DATA.TEXT_MESSAGE) {
         return alert('Empty message, write something');
     }
 
-    template.content.querySelector('.text').textContent = userName + ': ' + textMessage;
-    template.content.querySelector('.time').textContent = renderTime();
+    renderMessageBlock(DATA.CLASS, DATA.NAME, DATA.TEXT_MESSAGE, null);
 
     UI.CHAT.BODY.append(template.content.cloneNode(true));
 
