@@ -240,7 +240,7 @@ body {
       -ms-flex-align: start;
           align-items: flex-start;
   max-height: 424px;
-  overflow: auto;
+  overflow-x: auto;
 }
 .body__row::-webkit-scrollbar {
   width: 0px;

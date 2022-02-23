@@ -1,7 +1,5 @@
-import { renderMessages } from "./render";
-
 export async function sendRequest(method, url, token, body/* , onError, onSuccess */) {
-    const result = await fetch(url, {
+    return await fetch(url, {
         method: method,
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -9,9 +7,5 @@ export async function sendRequest(method, url, token, body/* , onError, onSucces
         },
         body: body,
     })
-
-    if (method === 'GET') {
-        renderMessages(result);
-    }
 }
 
