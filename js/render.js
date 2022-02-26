@@ -5,17 +5,17 @@ import { renderTime } from "./time.js";
 
 const USER_EMAIL = 'email';
 
-export async function renderMessages (result) {
+const array = [];
+const _array = [];
+
+export async function saveMessages (result) {
     const response = await result.json();
 
     const userEmail = Cookies.get(USER_EMAIL);
     let messageClass;
 
-    console.log(response)
-
-    for (let i = 0; i < response.messages.length; i++) {
-
-        const myMessage = response.messages[i].user.email === userEmail;
+    response.messages.forEach(i => {
+        const myMessage = i.user.email === userEmail;
 
         if (myMessage) {
             messageClass = 'message message-from-me sent';
@@ -23,29 +23,44 @@ export async function renderMessages (result) {
             messageClass = 'message message-to-me';
         }
 
-        // СТАРАЯ ВЕРСИЯ - ВСЕ БЛИН РАБОТАЕТ
-        /* const DATA = {
-            NAME: response.messages[i].username,
-            TEXT_MESSAGE: response.messages[i].message,
-            TIME_MESSAGE: response.messages[i].createdAt,
-            CLASS: messageClass,
-        } */   
-
-        //  НОВАЯ - КОНЕЦ
         const DATA = {
-            NAME: response.messages[i].user.name,
-            TEXT_MESSAGE: response.messages[i].text,
-            TIME_MESSAGE: response.messages[i].createdAt,
+            NAME: i.user.name,
+            TEXT_MESSAGE: i.text,
+            TIME_MESSAGE: i.createdAt,
             CLASS: messageClass,
-        }  
+            EMAIL: i.user.email,
+        }
 
-        renderMessageBlock (DATA.CLASS, DATA.NAME, DATA.TEXT_MESSAGE, DATA.TIME_MESSAGE);
+        array.push(DATA)
+    });
 
-        UI.CHAT.BODY.append(template.content.cloneNode(true));
-    }
+    array.reverse();
 
-    UI.CHAT.BODY.scrollTo(UI.CHAT.BODY.scrollTop, UI.CHAT.BODY.scrollHeight);
+    renderMessages();
+    UI.CHAT.BODY.scrollTop = UI.CHAT.BODY.scrollHeight;
 }
+
+function renderMessages () {
+    const array3 = _array.concat(array.slice(0, 20))
+
+    array.splice(0, 20);
+
+    array3.forEach(i => {
+        renderMessageBlock(i.CLASS, i.NAME, i.TEXT_MESSAGE, i.TIME_MESSAGE)
+        UI.CHAT.BODY.prepend(template.content.cloneNode(true));
+    })
+}
+
+
+UI.CHAT.BODY.addEventListener('scroll', scrollTop)
+function scrollTop() {
+    if (this.scrollTop === 0) {
+        const previousScroll = UI.CHAT.BODY.scrollHeight - this.scrollTop;
+        renderMessages();
+        this.scrollTop = UI.CHAT.BODY.scrollHeight - previousScroll;
+    } 
+}
+
 
 export function renderMessageBlock (blockClass, name, textMessage, timeMessage) {
     template.content.querySelector('.message').className = blockClass;

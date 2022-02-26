@@ -1,9 +1,9 @@
 import Cookies from 'js-cookie';
 
 import { UI } from "./view.js";
-import { renderMessageBlock, renderMessages } from "./render.js";
-import { sendRequest } from './api.js';
 import { URL } from './url.js';
+import { renderMessageBlock, saveMessages } from "./render.js";
+import { sendRequest } from './api.js';
 
 const TOKEN_NAME = 'token';
 const USER_EMAIL = 'email';
@@ -28,6 +28,7 @@ function sendMessage() {
     socket.send(JSON.stringify({ text: UI.MESSAGE.INPUT.value }));
     
     socket.onmessage = async function (event) {
+        event.preventDefault();
         const obj = JSON.parse(event.data);
 
         const userEmail = Cookies.get(USER_EMAIL);
@@ -51,7 +52,7 @@ function sendMessage() {
 
         UI.CHAT.BODY.append(template.content.cloneNode(true));
 
-        UI.CHAT.BODY.scrollTo(UI.CHAT.BODY.scrollTop, UI.CHAT.BODY.scrollHeight);
+        UI.CHAT.BODY.scrollTop = UI.CHAT.BODY.scrollHeight;
 
         if (myMessage) UI.MESSAGE.FORM.reset();
     };    
@@ -64,7 +65,7 @@ function setWebSocket(token) {
 async function downoadlMessageHistory(token) {
     const result = await sendRequest('GET', URL.MESSAGES, token, null);
 
-    renderMessages(result);
+    saveMessages(result);
 }
 
 startChat();

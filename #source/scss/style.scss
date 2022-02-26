@@ -59,6 +59,7 @@ body {
     margin: 0 8px;
     display: flex;
     align-items: flex-end;
+    // position: relative;
 }
 
 .body__row {
@@ -71,6 +72,7 @@ body {
     &::-webkit-scrollbar {
 	width: 0px;
     }
+    // position: absolute;
 }
 .message {
     padding: 8px;

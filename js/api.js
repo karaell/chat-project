@@ -1,4 +1,4 @@
-export async function sendRequest(method, url, token, body/* , onError, onSuccess */) {
+export async function sendRequest(method, url, token, body) {
     return await fetch(url, {
         method: method,
         headers: {
